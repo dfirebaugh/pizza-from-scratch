@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Pizza From Scratch</title>
+
+		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<div id='root'></div>
+
+		<script type="text/javascript" src="common/ajax-functions.js"></script>
+		<script type="text/javascript" src="controllers/clickController.client.js"></script>
+		<script type="text/javascript" src="controllers/userController.client.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+		<script type="text/babel">
+			const Header = () => (
+				<header>
+					<p>Welcome, <span id="display-name"></span>!</p>
+					<a class="menu" href="/profile">Profile</a>
+					<p>|</p>
+					<a class="menu" href="/logout">Logout</a>
+				</header>
+			)
+			class Latest extends React.Component {
+				componentDidMount(){
+					fetch('http://10.200.200.226:8080/api/toons/latest')
+						.then(response => response.json())
+						.then(json => {
+							console.log(json[0])
+							this.setState({latest:json[0]})
+						})
+				}
+				cartoonPanels = x => {
+					let panelObj = {}
+					let curRow = 1;
+					let panels = x.map( panel => {
+						return <img className={panel.id.substr(0,2)} src={panel.url}></img>
+					})
+					return panels
+				} 
+
+				render() {
+					return (
+						<div className='latest-container'>
+							{/*conditionally render header*/}
+							{false && <Header />}
+							<div id='latest'>
+								{ this.state && this.cartoonPanels(this.state.latest.panels) }
+							</div>
+						</div>
+					);
+				}
+			}
+
+			ReactDOM.render(
+				<Latest />,
+				document.getElementById('root')
+			);
+		</script>
+	</body>
+
+</html>
