@@ -10,3 +10,4 @@ deploy:
   keyfile: pizza-from-scratch-d16d998f58fc.json
   project: pizza-from-scratch
   default: true
+  promote: false
