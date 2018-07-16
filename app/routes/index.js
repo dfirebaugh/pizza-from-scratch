@@ -158,5 +158,15 @@ module.exports = function(app, passport) {
           });
         }
       });
-    });
+    })
+    .delete(isLoggedIn,(req,res)=>{
+      Toon.remove({
+        _id: req.body._id
+      }, (err, poll) => {
+        if (err) { res.send(err); }
+
+              res.json({ message: 'Successfully deleted' }).end();
+           //    res.status(200).end();
+});
+    })
 };
