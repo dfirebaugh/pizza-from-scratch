@@ -1,16 +1,30 @@
 language: node_js
 node_js:
 - lts/*
-deploy:
-  provider: gae
-  keyfile: pizza-from-scratch-comic-87d79c8a772f.json
-  project: pizza-from-scratch-comic
-  default: true
-  promote: false
-  verbosity: debug
-  on: master
+# deploy:
+#   provider: gae
+#   keyfile: pizza-from-scratch-comic-87d79c8a772f.json
+#   project: pizza-from-scratch-comic
+#   default: true
+#   promote: false
+#   verbosity: debug
+#   on: master
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_1e7768afa4ae_key -iv $encrypted_1e7768afa4ae_iv
   -in pizza-from-scratch-comic-87d79c8a772f.json.enc -out pizza-from-scratch-comic-87d79c8a772f.json
   -d
+
+  deploy:
+  provider: script
+  script: "gcloud app deploy app.yaml"
+  skip_cleanup: true
+  on:
+    tags: true
+
+notifications:
+  email:
+    recipients:
+    - dafirebaugh@gmail.com
+    on_success: change
+    on_failure: always
