@@ -7,16 +7,11 @@ before_install:
   -in pizza-from-scratch-comic-87d79c8a772f.json.enc -out pizza-from-scratch-comic-87d79c8a772f.json
   -d
 
-  deploy:
-  provider: script
-  script: "gcloud app deploy app.yaml"
-  skip_cleanup: true
-  on:
-    tags: true
-
-notifications:
-  email:
-    recipients:
-    - dafirebaugh@gmail.com
-    on_success: change
-    on_failure: always
+deploy:
+  provider: gae
+  keyfile: pizza-from-scratch-comic-87d79c8a772f.json
+  project: pizza-from-scratch-comic
+  default: true
+  promote: false
+  verbosity: debug
+  on: master

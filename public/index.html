@@ -30,7 +30,7 @@
 			)
 			class Latest extends React.Component {
 				componentDidMount(){
-					fetch('http://10.200.200.226:8080/api/toons/latest')
+					fetch('http://localhost:8000/api/toons/latest')
 						.then(response => response.json())
 						.then(json => {
 							console.log(json[0])
