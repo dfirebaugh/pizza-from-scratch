@@ -102,63 +102,22 @@ module.exports = function(app, passport) {
     })
   );
 
-  const stubToon = {
-    id: "String",
-    title: "String",
-    publishingDate: "String",
-    storyArc: "String",
-    artistComments: "String",
-    panels: [
-      {
-        id: "String",
-        title: "String",
-        publishingDate: "String",
-        panels: "[PanelSchema]"
-      }
-    ]
-  };
+  app.route("/api/toons/latest")
+    .get((req, res) =>
+      Toon.find({}, (err, doc) => {
+      res.send(doc[doc.length - 1]);
+    })
+  );
 
-  app.route("/api/toons/latest").get((req, res) =>
+  app.route("/api/toons/first").get((req, res) =>
     Toon.find({}, (err, doc) => {
-      res.send(doc.filter((x, i) => i == doc.length - 1));
+      res.send(doc[0]);
     })
   );
 
   app
     .route("/api/toons")
     .get((req, res) => Toon.find({}, (err, doc) => res.send(doc)))
-    .post((req, res) => {
-      let toon = new Toon({
-        id: req.body.id,
-        toonId: req.body.toonId,
-        title: req.body.title,
-        publishingDate: req.body.publishingDate,
-        storyArc: req.body.storyArc,
-        artistComments: req.body.artistComments,
-        panels: [
-          {
-            id: "String",
-            title: "String",
-            publishingDate: "String",
-            panels: "[PanelSchema]"
-          }
-        ]
-      });
-
-      toon.save((err, result) => {
-        if (err) {
-          res.json({
-            err: err.message,
-            id: toon.id
-          });
-        } else {
-          res.json({
-            message: "success!",
-            id: toon.id
-          });
-        }
-      });
-    })
     .delete(isLoggedIn,(req,res)=>{
       Toon.remove({
         _id: req.body._id

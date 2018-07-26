@@ -2,24 +2,20 @@
 
 <html>
 
-	<head>
-		<title>Pizza From Scratch</title>
+<head>
+	<title>Pizza From Scratch</title>
 
-		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
-	</head>
+	<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+</head>
 
-	<body>
-		<div id='root'></div>
+<body>
+	<div id='root'></div>
 
-		<script type="text/javascript" src="common/ajax-functions.js"></script>
-		<script type="text/javascript" src="controllers/clickController.client.js"></script>
-		<script type="text/javascript" src="controllers/userController.client.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
-		<script type="text/babel">
+	<script type="text/javascript" src="common/ajax-functions.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+	<script type="text/babel">
 			const Header = () => (
 				<header>
 					<p>Welcome, <span id="display-name"></span>!</p>
@@ -30,14 +26,61 @@
 			)
 			class Latest extends React.Component {
 				componentDidMount(){
-					fetch('http://localhost:8000/api/toons/latest')
+					fetch('http://10.200.200.155:8080/api/toons/')
 						.then(response => response.json())
 						.then(json => {
-							console.log(json[0])
-							this.setState({latest:json[0]})
+							this.setState({toons:json, curIndex: json.length - 1})
 						})
 				}
-				cartoonPanels = x => {
+				clickHandler = (d) =>{
+					if(d.target.id === 'first'){
+						this.setState({curIndex:0})
+					}
+					else if(d.target.id === 'prev'){
+						if(this.state.curIndex > 0){
+							this.setState({curIndex:this.state.curIndex -= 1})
+						}
+						else{
+							alert("that's as previous as it gets!")	
+						}
+					}
+					else if(d.target.id === 'next'){
+						if(this.state.curIndex < this.state.toons.length - 1){
+							this.setState({curIndex:this.state.curIndex += 1})
+						}
+						else{
+							alert("That's as next as it gets!")
+						}
+					}
+					else if(d.target.id === 'latest'){
+						this.setState({curIndex:this.state.toons.length - 1})
+					}
+				}
+				render() {
+					const Btns = () => (
+								<div className='btns'>
+									<button id='first' onClick={this.clickHandler}>First</button>
+									<button id='prev' onClick={this.clickHandler}> Prev </button>
+									<button id='next' onClick={this.clickHandler}> Next </button>
+									<button id='latest' onClick={this.clickHandler}>Latest</button>
+								</div>
+							)
+					return (
+						<div className='toon-container'>
+							{/*conditionally render header*/}
+							{false && <Header />}
+							<div id='toons'>
+								<Btns />
+								<ToonBox toon={this.state && this.state.toons[this.state.curIndex]} />
+								<Btns />
+							</div>
+						</div>
+					);
+				}
+			}
+
+			const ToonBox = props => {
+				const cartoonPanels = x => {
 					let panelObj = {}
 					let curRow = 1;
 					let panels = x.map( panel => {
@@ -46,24 +89,20 @@
 					return panels
 				} 
 
-				render() {
-					return (
-						<div className='latest-container'>
-							{/*conditionally render header*/}
-							{false && <Header />}
-							<div id='latest'>
-								{ this.state && this.cartoonPanels(this.state.latest.panels) }
-							</div>
-						</div>
-					);
-				}
+				return  (
+					<div>
+						<h2> { props.toon && props.toon.title } </h2>
+						<div className="toon-panels"> { props.toon && cartoonPanels(props.toon.panels) } </div>
+						<p>{ props.toon && props.toon.artistComments }</p>
+					</div>)
 			}
+
 
 			ReactDOM.render(
 				<Latest />,
 				document.getElementById('root')
 			);
 		</script>
-	</body>
+</body>
 
 </html>
