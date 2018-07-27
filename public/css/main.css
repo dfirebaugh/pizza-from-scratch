@@ -193,7 +193,7 @@ span {
 }
 
 #artistDiscussion {
-  width: 700px;
+  /* width: 700px; */
   height: 300px;
 }
 
@@ -204,10 +204,10 @@ span {
 }
 
 .toon-container{
-  width: 50%;
+  /* width: 50%; */
   margin: 0 auto;
 }
 
 #toons{
-  max-width:45em;
+  /* max-width:45em; */
 }
