@@ -19,6 +19,7 @@ app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use('/common', express.static(process.cwd() + '/app/common'));
 app.use('/toon-images', express.static(process.cwd() + '/public/uploads'))
+app.use('/static', express.static('public/static'))
 
 app.use(bodyParser.json());
 
@@ -30,7 +31,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/static', express.static('public/static'))
 
 routes(app, passport);
 
