@@ -6,19 +6,20 @@
 	<title>Pizza From Scratch</title>
 
 	<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="common/ajax-functions.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
 <body>
 	<div id='root'></div>
 	<link href="cp_reset.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="common/ajax-functions.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!-- <script src="toonNavButton.js"></script> -->
 	<script type="text/babel">
 		 const hostVar= '10.200.200.182'
@@ -64,7 +65,7 @@
 				}
 				render() {
 					const Btns = () => (
-								<div className='btns'>
+								<div className='container btns'>
 									<button id='first' onClick={this.clickHandler}>First</button>
 									<button id='prev' onClick={this.clickHandler}> Prev </button>
 									<button id='next' onClick={this.clickHandler}> Next </button>
@@ -72,7 +73,7 @@
 								</div>
 							)
 					return (
-						<div className='toon-container'>
+						<div className='toon-container flex-container'>
 							{/*conditionally render header*/}
 							{false && <Header />}
 							<div id='toons'>
@@ -86,30 +87,30 @@
 			}
 
 			const ToonBox = props => {
-				const cartoonPanels = x => {
-					let panelObj = {}
-					let curRow = 1;
-					let panels = x.map( panel => {
-						return <img className={panel.id.substr(0,2),"col-md-2,col-lg-2,col-sm-12"} src={panel.url}></img>
-						// ,col-md-2,col-lg-2,col-sm-12
-					}) 
-					return panels
-				} 
 				const checkRow = (p,currentRow) => {
 					return p.toon.panels.filter(x => Number(x.pos.substr(1,1)) === currentRow)
 				}
-					//  console.log ('position: ', props.toon.panels.filter(x => Number(x.pos.substr(1,1)) === 1))
+				const cartoonPanels = x => {
+					let panelObj = {}
+					let curRow = 1;
+					let screenW=window.innerWidth;
+					return x.map( panel => {
+						return <div className='panel col-md-2'>
+									<img className={panel.id.substr(0,2),"panel col-12 col-sm-12"} src={panel.url}></img>
+								</div>
+						})
+						}
 				if (props.toon){
 					console.log(props.toon)
 					return  (
-						<div>
+						<div className='container toon-box'>
 							<h2> {  props.toon.title } </h2>
 							<h3>{  props.toon.publishingDate }</h3>
 							
-							<div className="first-row col-md-12 col-lg-12">{  cartoonPanels(checkRow(props,1)) }</div>
-							<div className="second-row col-md-12">{  cartoonPanels(checkRow(props,2)) }</div>
-							<div className="third-row col-md-12">{  cartoonPanels(checkRow(props,3)) }</div>
-							<div className="fourth-row col-md-12">{  cartoonPanels(checkRow(props,4)) }</div>
+							<div className="row first-row  ">{  cartoonPanels(checkRow(props,1)) }</div>
+							<div className="row second-row ">{  cartoonPanels(checkRow(props,2)) }</div>
+							<div className="row third-row ">{  cartoonPanels(checkRow(props,3)) }</div>
+							<div className="row fourth-row ">{  cartoonPanels(checkRow(props,4)) }</div>
 							
 							<p>{  props.toon.artistComments }</p>
 						</div>)
@@ -118,7 +119,7 @@
 					console.log('returning null!!!')
 					return null
 				}
-			}
+			} // closes ToonBox
 
 
 			ReactDOM.render(
