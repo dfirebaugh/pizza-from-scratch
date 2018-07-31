@@ -146,6 +146,16 @@ header a ~ p {
   font-weight: 400;
 }
 
+
+/* FlexBox*/
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  /* max-width: 100%; */
+  /* width: auto;
+  height: auto; */
+}
+
 /****** Profile Styling ******/
 
 .github-profile {
@@ -205,9 +215,20 @@ span {
 
 .toon-container{
   /* width: 50%; */
+  width: 100%;
   margin: 0 auto;
 }
 
 #toons{
   /* max-width:45em; */
+}
+
+.panel{
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+
+img{
+  max-width:100%;
+  height:auto;
 }
