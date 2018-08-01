@@ -1,7 +1,7 @@
 Pizza From Scratch
 =
 
-[demo](http://35.236.228.86:8080/)
+[demo](http://devwithdustin.pizzafromscratch.net:8080/)
 
 This is a website worked on with 
 [Bill Lemmond](https://github.com/Pastshelfdate) to publish his cartoons.
