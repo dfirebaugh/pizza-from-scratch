@@ -1,5 +1,5 @@
 /********* Fonts **********/
-
+/* I don't understand how these are distinguished from each other. */
 @font-face {
   font-family: "Roboto";
   font-style: normal;
@@ -66,7 +66,7 @@ header p {
 .menu:active {
   color: #ff630d;
 }
-
+/* What does "a ~ p" mean?*/
 header a ~ p {
   margin: 0;
   padding: 0;
@@ -105,7 +105,8 @@ header a ~ p {
 }
 
 .btn-container {
-  /* Styling for the div that contains the buttons */
+  /* Styling for the div that contains the buttons
+  How does negative margin work? It's cool, I just want to know. */
   margin: -10px auto 0 auto;
   text-align: center;
 }
@@ -137,7 +138,7 @@ header a ~ p {
 }
 
 .btn-delete {
-  /* Styling for delete button */
+  /* Styling for delete button (Buttons need to be deleted?) */
   background-color: #eceff1;
   color: #212121;
 }
@@ -156,7 +157,7 @@ header a ~ p {
   height: auto; */
 }
 
-/****** Profile Styling ******/
+/****** Profile Styling  (What is the Github profile?) ******/
 
 .github-profile {
   width: 350px;

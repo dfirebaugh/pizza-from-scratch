@@ -2,7 +2,7 @@
 
 const path = process.cwd();
 const Toon = require("../models/cartoons");
-const multer = require("multer");
+const multer = require("multer"); // What is "multer"?
 
 module.exports = function(app, passport) {
   const isLoggedIn = (req, res, next) => {
@@ -51,7 +51,8 @@ module.exports = function(app, passport) {
       //Example image file name:
       //FileSchema: YYYY_MM_DD_position_title_index_extension
       //2009_08_24_r1p1_PfS-Vito1_1_.png
-      console.log(req.files);
+      // Where is the "toon-images" folder?
+      console.log(req.files); // Test/debug code
       let uploadedFiles = req.files.map(x => {
         let img = x.originalname.split("_");
         let panelObj = {
@@ -61,7 +62,7 @@ module.exports = function(app, passport) {
           url: `/toon-images/${x.originalname}`,
           originalName: x.originalname
         };
-        console.log("URL::  ", panelObj.url);
+        console.log("URL::  ", panelObj.url); //Test/debug code
         return panelObj;
       });
       let toon = new Toon({
@@ -74,9 +75,9 @@ module.exports = function(app, passport) {
         panels: uploadedFiles
       });
 
-      toon.save((err, result) => {
+      toon.save((err, result) => { // This checks for adding toon image to database?
         if (err) {
-          res.json({
+          res.json({ // Ooh! Ooh! json! Must read up on what that is!  :)
             err: err.message,
             id: toon.id
           });
@@ -102,6 +103,7 @@ module.exports = function(app, passport) {
     })
   );
 
+  // So is there a doc being built that is a searchable list of all comic strips
   app.route("/api/toons/latest")
     .get((req, res) =>
       Toon.find({}, (err, doc) => {
@@ -115,7 +117,7 @@ module.exports = function(app, passport) {
     })
   );
 
-  app
+  app // Did a rogue Return get in here?  Was this supposed to be "app.route..."?
     .route("/api/toons")
     .get((req, res) => Toon.find({}, (err, doc) => res.send(doc)))
     .delete(isLoggedIn,(req,res)=>{
