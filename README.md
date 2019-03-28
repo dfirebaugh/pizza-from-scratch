@@ -1,6 +1,8 @@
 Pizza From Scratch
 =
 
+[demo](http://devwithdustin.pizzafromscratch.net:8080/)
+
 This is a website worked on with 
 [Bill Lemmond](https://github.com/Pastshelfdate) to publish his cartoons.
 
