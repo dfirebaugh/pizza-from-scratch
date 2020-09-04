@@ -9,30 +9,31 @@
   },
   "homepage": "http://pizzafromscratch.com/",
   "bugs": "https://github.com/dfirebaugh/pizza-from-scratch/issues",
-  "keywords": [
-    "MongoDB",
-    "Mongoose",
-    "full stack",
-    "Express",
-    "Node",
-    "javascript",
-    "boilerplate"
-  ],
-  "scripts": {
-    "start": "node server.js",
-    "build": "rm -rf public && cd client && npm run-script build",
-    "test": "mocha"
-  },
   "license": "MIT",
+  "scripts": {
+    "preclean": "npm run prebuild",
+    "clean": "npx tsc --build --force",
+    "prebuild": "node build-scripts/buildContentMap.js",
+    "build": "npx tsc",
+    "rollup": "rollup -c rollup.config.js",
+    "predev": "npm run prebuild",
+    "serve": "es-dev-server --app-index src/index.html --node-resolve --watch --open",
+    "dev": "npx tsc -w & npm run serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dustin Firebaugh <dafirebaugh@gmail.com>",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "dotenv": "^1.2.0",
-    "express": "^4.12.4",
-    "express-session": "^1.11.3",
-    "mocha": "^5.2.0",
-    "mongoose": "^4.1.0",
-    "multer": "^1.3.1",
-    "passport": "^0.3.0",
-    "passport-github": "^1.0.0"
-  }
+    "@intcreator/markdown-element": "^0.3.3",
+    "lit-element": "^2.3.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-replace": "^2.3.3",
+    "es-dev-server": "^1.52.0",
+    "jest": "^26.4.2",
+    "rollup-plugin-filesize": "^9.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.1",
+    "typescript": "^4.0.2"
+  },
+  "type": "module"
 }
