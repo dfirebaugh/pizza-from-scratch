@@ -17,7 +17,7 @@
     "build": "npx tsc",
     "rollup": "rollup -c rollup.config.js",
     "predev": "npm run prebuild",
-    "serve": "es-dev-server --app-index src/index.html --node-resolve --watch --open",
+    "serve": "es-dev-server --app-index dev-index.html --node-resolve --watch --open",
     "dev": "npx tsc -w & npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

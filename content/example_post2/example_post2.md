@@ -28,7 +28,7 @@ function helloWorld(){
 ```
 
 
-![img1](../content/example_post2/2009_08_24_r1p1_PfS-Vito1_1_.png)
-![img1](../content/example_post2/2009_08_24_r1p2_PfS-Vito1_2_.png)
-![img1](../content/example_post2/2009_08_24_r1p3_PfS-Vito1_3_.png)
-![img1](../content/example_post2/2009_08_24_r1p4_PfS-Vito1_4_.png)
+![img1](content/example_post2/2009_08_24_r1p1_PfS-Vito1_1_.png)
+![img1](content/example_post2/2009_08_24_r1p2_PfS-Vito1_2_.png)
+![img1](content/example_post2/2009_08_24_r1p3_PfS-Vito1_3_.png)
+![img1](content/example_post2/2009_08_24_r1p4_PfS-Vito1_4_.png)
