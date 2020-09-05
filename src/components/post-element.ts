@@ -4,12 +4,13 @@
  * whatever we put in the markdown file will show up here
  */
 import { LitElement, html, css, property } from "lit-element";
-import ContentService from "../services/ContentService";
 import "@vanillawc/wc-markdown";
 
 class PostElement extends LitElement {
     @property({ attribute: "slug" })
     slug: string = "";
+    @property({ attribute: "markdown" })
+    markdown: string = "";
 
     static get styles() {
         return css`
@@ -25,14 +26,11 @@ class PostElement extends LitElement {
     }
 
     render() {
-        if (this.slug.length == 0) return null;
-        if (!ContentService[this.slug]) return null;
-
         return html`
         <container>
         <wc-markdown>
             <script type="wc-content">
-                ${ContentService[this.slug].markDown}
+                ${this.markdown}
             </script>
         </wc-markdown>
         </container>

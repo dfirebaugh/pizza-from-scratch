@@ -11,13 +11,18 @@ class StateService {
         currentPost: null
     };
 
-    cb: Function | null = null;
+    /**
+     * requestUpdateCallBack 
+     * we register this so that we can update
+     * the view when the state changes.
+     */
+    requestUpdateCallBack: Function | null = null;
 
     update(state: any): void {
         this.state = Object.assign(this.state, state);
 
-        if (this.cb) {
-            this.cb();
+        if (this.requestUpdateCallBack) {
+            this.requestUpdateCallBack();
         }
     }
 
@@ -26,7 +31,7 @@ class StateService {
     }
 
     registerRequestUpdateCallBack(cb: Function) {
-        this.cb = cb;
+        this.requestUpdateCallBack = cb;
     }
 }
 
