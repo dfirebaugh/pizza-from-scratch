@@ -17,6 +17,10 @@ class PostElement extends LitElement {
             display: grid;
             justify-content: center;
         }
+        
+        p {
+            display: flex; // adding flex to remove whitespace after images
+        }
         `;
     }
 
