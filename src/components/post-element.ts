@@ -5,7 +5,7 @@
  */
 import { LitElement, html, css, property } from "lit-element";
 import ContentService from "../services/ContentService";
-import '@intcreator/markdown-element';
+import 'prism-markdown-element/prism-markdown-element.js';
 
 class PostElement extends LitElement {
     @property({ attribute: "slug" })
@@ -28,9 +28,9 @@ class PostElement extends LitElement {
 
         return html`
         <container>
-            <markdown-element 
+            <prism-markdown-element 
                 markdown="${ContentService[this.slug].markDown}">
-            </markdown-element>
+            </prism-markdown-element>
         </container>
         `
     }
