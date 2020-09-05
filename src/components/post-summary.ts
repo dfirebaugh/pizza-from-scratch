@@ -20,10 +20,6 @@ class PostSummary extends LitElement {
             currentPost: this.slug,
             appMode: APP_MODES.VIEW_POST
         })
-        console.log(AppState.get())
-        this.dispatchEvent(new CustomEvent("update-from-child", {
-            detail: "post clicked"
-        }))
     }
 
     render() {

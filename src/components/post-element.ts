@@ -5,7 +5,7 @@
  */
 import { LitElement, html, css, property } from "lit-element";
 import ContentService from "../services/ContentService";
-import 'prism-markdown-element/prism-markdown-element.js';
+import "@vanillawc/wc-markdown";
 
 class PostElement extends LitElement {
     @property({ attribute: "slug" })
@@ -21,16 +21,16 @@ class PostElement extends LitElement {
     }
 
     render() {
-        console.log(this.slug)
-
         if (this.slug.length == 0) return null;
         if (!ContentService[this.slug]) return null;
 
         return html`
         <container>
-            <prism-markdown-element 
-                markdown="${ContentService[this.slug].markDown}">
-            </prism-markdown-element>
+        <wc-markdown>
+            <script type="wc-content">
+                ${ContentService[this.slug].markDown}
+            </script>
+        </wc-markdown>
         </container>
         `
     }

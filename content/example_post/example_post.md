@@ -9,7 +9,7 @@ slug: pfs_anti-example-post
     note: it has to be at the very top of the file
 -->
 
-### Example Post
+# Example Post
 <!-- images are added this way -- alt text exists within the square brackets -->
 ![PFS_Anti_1](content/example_post/2009_09_14_r1p1_PfS-AntiS2_1_.png)
 ![PFS_Anti_2](content/example_post/2009_09_14_r1p2_PfS-AntiS2_2_.png)
