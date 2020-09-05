@@ -23,7 +23,6 @@
   },
   "author": "Dustin Firebaugh <dafirebaugh@gmail.com>",
   "dependencies": {
-    "@intcreator/markdown-element": "^0.3.3",
     "lit-element": "^2.3.1",
     "prism-markdown-element": "^1.0.9"
   },

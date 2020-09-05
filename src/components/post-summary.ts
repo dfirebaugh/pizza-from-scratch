@@ -9,7 +9,6 @@
 import { LitElement, html, property } from "lit-element";
 import Content from "../services/ContentService";
 import AppState from "../services/AppStateService";
-import '@intcreator/markdown-element';
 import { APP_MODES } from "../types";
 
 class PostSummary extends LitElement {
