@@ -1,6 +1,8 @@
 Pizza From Scratch
 =
 
+[click here for demo](https://dfirebaugh.github.io/pizza-from-scratch/)
+
 This is a website worked on with 
 [Bill Lemmond](https://github.com/Pastshelfdate) to publish his cartoons.
 
