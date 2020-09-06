@@ -5,10 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/style.css" rel="stylesheet">
+    <!-- Add support for Web Components to IE11. -->
+    <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
     <title>Pizza From Scratch</title>
     <style>
         body {
-            background-color: grey;
             margin: 0;
         }
     </style>
@@ -18,7 +22,7 @@
 
     <div id="pizza-from-scratch"></div>
 
-    <script type="module" src="bundled.js"></script>
+    <script type="module" src="bundle.js"></script>
 
 </body>
 

@@ -2,37 +2,18 @@
  * this is where we determine what shows up when we 
  * change the APP_MODE
  */
-import { html } from "lit-element";
-import AppState from "./services/AppStateService";
-import { APP_MODES } from "./types";
-import ContentService from "./services/ContentService";
+import { Router } from '@vaadin/router';
 
-function renderAllPosts() {
-    return Object.values(ContentService).map(post => {
-        return html`
-        <post-summary 
-            slug="${post.slug}"
-            >
-        </post-summary>`
-    })
-}
+import "./pages/comic-feed";
+import "./pages/comic-page";
 
-export default function router() {
-    switch (AppState.get().appMode) {
-        case (APP_MODES.COMIC_ROLL):
-            return html`
-            <page-container>
-            ${renderAllPosts()}
-            </page-container>
-            `;
-        case (APP_MODES.VIEW_POST):
-            return html`
-                <post-element 
-                    slug="${AppState.get().currentPost}"
-                    markdown="${ContentService[AppState.get().currentPost].markDown}">
-                </post-element>
-            `;
-        default:
-            return html`whoops...`;
-    }
-}
+const router = new Router(document.getElementById("pizza-from-scratch"));
+router.setRoutes([
+    { path: '/', component: 'comic-feed' },
+    { path: '/comics/:slug', component: 'comic-page' },
+]);
+
+console.log(router.location)
+
+
+export default router;

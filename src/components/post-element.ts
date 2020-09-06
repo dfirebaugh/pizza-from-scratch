@@ -18,7 +18,7 @@ class PostElement extends LitElement {
             display: grid;
             justify-content: center;
         }
-        
+
         p {
             display: flex; // adding flex to remove whitespace after images
         }
@@ -28,11 +28,11 @@ class PostElement extends LitElement {
     render() {
         return html`
         <container>
-        <wc-markdown>
-            <script type="wc-content">
-                ${this.markdown}
-            </script>
-        </wc-markdown>
+            <wc-markdown>
+                <script type="wc-content">
+                    ${this.markdown}
+                </script>
+            </wc-markdown>
         </container>
         `
     }

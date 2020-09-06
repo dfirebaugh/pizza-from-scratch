@@ -1,10 +1,12 @@
-//requiring path and fs modules
 import fs from "fs";
 import path from "path";
 
 const markDownContent = {};
 
 const contentDirectory = "./content"
+fs.mkdirSync(`dist/comics`, { recursive: true })
+
+fileToBuildFolder("index.html", "dist/index.html");
 
 const getAllFiles = function (dirPath, arrayOfFiles) {
     const files = fs.readdirSync(dirPath)
@@ -16,6 +18,7 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
             arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
         } else {
             const currentFile = path.join(dirPath, "/", file)
+            fileToBuildFolder(currentFile, `dist/comics/${file}`)
             if (path.extname(currentFile) == ".md")
                 arrayOfFiles.push(currentFile)
         }
@@ -68,10 +71,17 @@ markDownFiles.forEach(function (markdownFile) {
     markDownContent[slug] = post;
 })
 
-const outputString = `export default ${JSON.stringify(markDownContent)}`
+const outputString = JSON.stringify(markDownContent);
 
-fs.writeFile(`./src/content.ts`, outputString, function (err) {
+fs.writeFile(`./src/content.json`, outputString, function (err) {
     if (err) {
         console.error(err);
     }
 })
+
+function fileToBuildFolder(filePath, destPath) {
+    fs.copyFile(filePath, destPath, (err) => {
+        if (err) throw err;
+        console.log(filePath, `was copied to ${destPath}`);
+    });
+}

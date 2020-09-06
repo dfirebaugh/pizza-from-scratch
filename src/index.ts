@@ -6,39 +6,43 @@
  * Load our lit elements and other ESmodules
  */
 import { LitElement, html, css } from "lit-element";
-import Router from "./router";
-import AppStateService from "./services/AppStateService";
+import router from "./router";
+// import AppStateService from "./services/AppStateService";
+import linkStyle from "./theme/links";
 import "./components/post-element";
 import "./components/post-summary";
-import "./components/top-bar"
+import "./materialLoader";
 
 const mountPoint = document.getElementById("pizza-from-scratch")
 class ComicApp extends LitElement {
-    static get styles() {
-        return css`
-            page-container {
-                display: grid;
-                justify-content: center;
-            }
-
-            top-bar {
-                display: grid;
-                width: 100vw;
-            }
-        `;
-    }
+    static styles = [
+        linkStyle,
+        css`
+        .page-title {
+            color: white;
+        }
+        `];
 
     firstUpdated() {
-        AppStateService.registerRequestUpdateCallBack(this.requestUpdate.bind(this));
+        //     AppStateService.registerRequestUpdateCallBack(this.requestUpdate.bind(this));
+        // console.log(router.location)
+        router.ready
     }
 
     render() {
         return html`
-        <top-bar></top-bar>
-        ${Router()}
+        <mwc-top-app-bar>
+            <page-title slot="title">
+                <a class="page-title" href="/">
+                    Pizza From Scratch
+                </a>
+            </page-title>
+        </mwc-top-app-bar>
         `
     }
 }
+// <a href="/">Home</a>
+// <a href="/comics/pfs_anti-example-post">Users</a>
 
 customElements.define("pizza-from-scratch", ComicApp);
 

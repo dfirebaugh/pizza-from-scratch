@@ -2,13 +2,11 @@ import { APP_MODES } from "../types";
 
 interface AppState {
     appMode: APP_MODES,
-    currentPost: any
 };
 
 class StateService {
     state: AppState = {
         appMode: APP_MODES.COMIC_ROLL,
-        currentPost: null
     };
 
     /**

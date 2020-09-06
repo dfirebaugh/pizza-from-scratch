@@ -7,40 +7,35 @@
  * in theh markdown files
  */
 import { LitElement, html, css, property } from "lit-element";
-import Content from "../services/ContentService";
-import AppState from "../services/AppStateService";
-import { APP_MODES } from "../types";
+import linkStyle from "../theme/links";
 
 class PostSummary extends LitElement {
-    @property({ attribute: "slug" })
-    slug: any = null;
+    @property()
+    slug: string = "";
+    @property()
+    title: string = "";
+    @property()
+    description: string = "";
+    @property()
+    date: string = "";
 
-    static get styles() {
-        return css`
-            #post-title:hover {
-                cursor: pointer;
-                color: white;
-            }
-        `;
-    }
-
-    handlePostClick(event: HTMLInputElement) {
-        AppState.update({
-            currentPost: this.slug,
-            appMode: APP_MODES.VIEW_POST
-        })
-    }
+    static styles = [
+        linkStyle,
+        css`
+        `];
 
     render() {
         return html`
         <container>
-            <h1 
-                @click="${this.handlePostClick}"
-                id="post-title">
-                ${Content[this.slug].title}
-            </h1>
-            <h4>${Content[this.slug].date}</h4>
-            <p>${Content[this.slug].description}</p>
+            <a href="/comics/${this.slug}">
+                <h1 
+                    class="noselect"
+                    id="post-title">
+                    ${this.title}
+                </h1>
+            </a>
+            <h4>${this.date}</h4>
+            <p>${this.description}</p>
         </container>
         `
     }

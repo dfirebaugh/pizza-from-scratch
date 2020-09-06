@@ -2,6 +2,5 @@ node_modules
 tsconfig.tsbuildinfo
 bundled.js
 kanas_with_images.ts
-build/
-content.ts
-bundled.js
+dist/
+content.json
