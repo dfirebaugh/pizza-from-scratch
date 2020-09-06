@@ -19,8 +19,6 @@ You can read up on how to write markdown files [here](https://github.com/adam-p/
 
 Typically, you will want to make a new folder for each post and place the images that belong in that post in the same folder.
 
->note: you should reference these images relative from the root of the repo e.g. (if the image is located at `content/imagename.png` you would reference it as `![image-alt-tag](content/imagename.png)`)
-
 Each markdown file should start with some metadata at the top of the file.
 e.g.: 
 ```
