@@ -7,7 +7,6 @@
  */
 import { LitElement, html, css } from "lit-element";
 import router from "./router";
-// import AppStateService from "./services/AppStateService";
 import linkStyle from "./theme/links";
 import "./components/post-element";
 import "./components/post-summary";
@@ -24,8 +23,7 @@ class ComicApp extends LitElement {
         `];
 
     firstUpdated() {
-        //     AppStateService.registerRequestUpdateCallBack(this.requestUpdate.bind(this));
-        // console.log(router.location)
+        /* call the router */
         router.ready
     }
 
@@ -41,8 +39,6 @@ class ComicApp extends LitElement {
         `
     }
 }
-// <a href="/">Home</a>
-// <a href="/comics/pfs_anti-example-post">Users</a>
 
 customElements.define("pizza-from-scratch", ComicApp);
 
