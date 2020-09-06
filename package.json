@@ -11,16 +11,10 @@
   "bugs": "https://github.com/dfirebaugh/pizza-from-scratch/issues",
   "license": "MIT",
   "scripts": {
-    "preclean": "npm run prebuild",
-    "clean": "npx tsc --build --force",
-    "prebuild": "node build-scripts/buildContentMap.js",
-    "build": "npx tsc",
-    "rollup": "rollup -c rollup.config.js",
-    "predev": "npm run prebuild",
-    "serve": "cd dist && es-dev-server --app-index index.html --node-resolve --watch --open",
-    "dev": "webpack --config webpack.config.cjs --watch & npm run serve",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --config webpack.config.cjs  "
+    "build": "node build-scripts/buildContentMap.js",
+    "dev": "webpack --config webpack.config.cjs --watch & npm run build && cd dist && es-dev-server --app-index index.html --node-resolve --watch --open",
+    "start": "npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dustin Firebaugh <dafirebaugh@gmail.com>",
   "dependencies": {
@@ -30,7 +24,6 @@
     "@material/mwc-icon-button": "^0.18.0",
     "@material/mwc-tab-bar": "^0.18.0",
     "@material/mwc-top-app-bar": "^0.18.0",
-    "@types/page": "^1.8.0",
     "@vaadin/router": "^1.7.2",
     "@vanillawc/wc-markdown": "^1.6.3",
     "lit-element": "^2.3.1"

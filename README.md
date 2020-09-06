@@ -9,7 +9,8 @@ This is a website worked on with
 
 ### Serving up the site for development
 ```
-npm run serve
+npm install
+npm start
 ```
 
 ### Adding Content
