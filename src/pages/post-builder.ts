@@ -180,7 +180,7 @@ ${this.imagesToMarkDown(true).join("")}
 title: ${this.title}
 description: ${this.description}
 date: ${this.publishDate}
-slug: ${this.title.replace(" ", "_")}
+slug: ${this.title.split(" ").join("_")}
 ---\n\n`;
         
                 this.markdownBody = `
