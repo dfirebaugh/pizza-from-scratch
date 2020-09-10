@@ -4,11 +4,16 @@
  */
 import { LitElement, html, css, property } from "lit-element";
 
+const LINE_BREAK = "LINE_BREAK";
+
 enum InputType {
     TITLE,
     DESCRIPTION,
     DATE,
-    IMAGE
+    IMAGE_UPLOAD,
+    IMAGE_OVERLAY,
+    ADD_LINE_BREAK,
+    DOWNLOAD
 }
 
 interface HTMLInputEvent extends Event {
@@ -16,8 +21,15 @@ interface HTMLInputEvent extends Event {
 }
 
 interface ImageObj {
+    /* name is the filename.  This is what we will need to store in the actual output markdown */
     name: string,
-    path: string
+    /* path is only important for the preview */
+    path: string,
+    /**
+     * overlay is text that displays when the user hovers over the image.
+     * we also use this as the tooltip
+     * */ 
+    overlay: string
 }
 
 class PostBuilder extends LitElement {
@@ -38,10 +50,22 @@ class PostBuilder extends LitElement {
     static get styles() {
         return css`
         input-container {
-            display: grid;
+            display: block;
             grid-template-columns: auto;
-            height: 60vh;
-            grid-gap: 2vh;
+            height: 85vh;
+            width: 20vw;
+        }
+
+        input-container * {
+            margin-bottom: 2vh;
+        }
+
+        mwc-textarea {
+            width: 100%;
+        }
+
+        mwc-textfield {
+            width: 100%;
         }
 
         container {
@@ -51,10 +75,18 @@ class PostBuilder extends LitElement {
         }`;
     }
 
-    imagesToMarkDown() {
+    imagesToMarkDown(preview?: boolean) {
         return this.images.map(image => {
-            console.log(image)
-            return `![${image.name}](${image.path})]\n`
+            if(image.name == LINE_BREAK) {
+                return `\n
+                <!--this is an intentional line break-->\n`;
+            }
+
+            if (preview) {
+                return `![${image.overlay}](${image.path})\n`;
+            }
+
+            return `![${image.overlay}](${image.name})\n`;
         });
     }
 
@@ -71,7 +103,7 @@ slug: ${this.title.replace(" ", "_")}
 
 ${this.publishDate?.toDateString()}
 
-${this.imagesToMarkDown()}
+${this.imagesToMarkDown(true).join("")}
 > ${this.description}
         `;
 
@@ -90,7 +122,7 @@ ${this.imagesToMarkDown()}
         pageContainer.appendChild(newPostElement)
     }
 
-    handleInput(event: Event, inputType: InputType) {
+    handleInput(event: Event, inputType: InputType, imageIndex?: number) {
         switch (inputType) {
             case InputType.TITLE:
                 this.title = (<HTMLInputElement>event.target).value
@@ -101,7 +133,7 @@ ${this.imagesToMarkDown()}
             case InputType.DATE:
                 this.publishDate = new Date((<HTMLInputElement>event.target).value)
                 break;
-            case InputType.IMAGE:
+            case InputType.IMAGE_UPLOAD:
                 if (!this.shadowRoot) return;
 
                 const inputElem: HTMLInputElement | null = this.shadowRoot.querySelector("#fileInput")
@@ -109,10 +141,27 @@ ${this.imagesToMarkDown()}
                     inputElem.click();
                 }
                 return;
+            case InputType.IMAGE_OVERLAY:
+                if (imageIndex == null) return;
+
+                console.log((<HTMLInputElement>event.target).value)
+                this.images[imageIndex].overlay = (<HTMLInputElement>event.target).value
+                break;
+            case InputType.ADD_LINE_BREAK:
+                this.images.push(<ImageObj>{name: LINE_BREAK, path: "n/a"});
+                break;
+            case  InputType.DOWNLOAD:
+                this.handleDownload();
+                break;
             default:
                 break;
         }
 
+        this.updateMarkdown();
+    }
+
+    handleDeleteImage(ImgIndex: number) {
+        delete this.images[ImgIndex];
         this.updateMarkdown();
     }
 
@@ -122,9 +171,71 @@ ${this.imagesToMarkDown()}
             return null;
         }
 
-
-        this.images.push({name: e.target.files[0].name, path: URL.createObjectURL(e.target.files[0])})
+        this.images.push(<ImageObj>{name: e.target.files[0].name, path: URL.createObjectURL(e.target.files[0])})
         this.updateMarkdown();
+    }
+
+    handleDownload() {
+        this.markdownHeader = `---
+title: ${this.title}
+description: ${this.description}
+date: ${this.publishDate}
+slug: ${this.title.replace(" ", "_")}
+---\n\n`;
+        
+                this.markdownBody = `
+# ${this.title}
+
+${this.publishDate?.toDateString()}
+
+${this.imagesToMarkDown().join("")}
+> ${this.description}
+        `;
+    
+        console.log(this.markdownHeader + this.markdownBody);
+
+        //TODO: Download zip file
+        this.download('markdown.md', this.markdownHeader + this.markdownBody)
+    }
+
+    download(filename: any, text: any) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+      
+        element.style.display = 'none';
+        document.body.appendChild(element);
+      
+        element.click();
+      
+        document.body.removeChild(element);
+      }
+
+    renderImageInfo() {
+        return this.images.map((image, index) => {
+            if (image.name == LINE_BREAK ) {
+                return html`
+                <mwc-formfield label="LINE_BREAK">
+                    <mwc-fab
+                        @click=${() => this.handleDeleteImage(index)} 
+                        mini icon="delete"></mwc-fab>
+                </mwc-formfield>`;
+            }
+
+            return html`
+                <mwc-formfield label="name: ${image.name}">
+                    <mwc-fab
+                        @click=${() => this.handleDeleteImage(index)} 
+                        mini icon="delete"></mwc-fab>
+                    <mwc-textarea
+                        @change=${(event: Event) => this.handleInput(event, InputType.IMAGE_OVERLAY, index)}
+                        label="Image Overlay/ Alt Text"
+                        required>
+                    </mwc-textarea>
+                </mwc-formfield>
+
+            `
+        })
     }
 
     render() {
@@ -152,17 +263,24 @@ ${this.imagesToMarkDown()}
                 <input @change="${this.handleImageUpload}" type="file" id="fileInput" name="file" accept="image/*" style="display:none"/>
 
                 <mwc-fab
-                    @click=${(event: Event) => this.handleInput(event, InputType.IMAGE)}
+                    @click=${(event: Event) => this.handleInput(event, InputType.IMAGE_UPLOAD)}
                     extended
                     label="Add an Image">
                 </mwc-fab>
 
                 <mwc-fab
-                    @click=${(event: Event) => this.handleInput(event, InputType.IMAGE)}
+                    @click=${(event: Event) => this.handleInput(event, InputType.ADD_LINE_BREAK)}
+                    extended
+                    label="Add a line break">
+                </mwc-fab>
+
+                ${this.renderImageInfo()}
+                <mwc-fab
+                    @click=${(event: Event) => this.handleInput(event, InputType.DOWNLOAD)}
                     extended
                     label="Download">
                 </mwc-fab>
-                </input-container>
+            </input-container>
                 
                 
             <post-element

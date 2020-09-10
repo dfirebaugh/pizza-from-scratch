@@ -24,6 +24,15 @@ class PostElement extends LitElement {
         `;
     }
 
+    firstUpdated() {
+        this.shadowRoot?.querySelectorAll("img")?.forEach(img => {
+            img.addEventListener("mouseenter", function (event) {
+            console.log(img.getAttribute('alt'))
+            //TODO: add an overlay element
+        })
+        });
+    }
+
     render() {
         return html`
         <container>

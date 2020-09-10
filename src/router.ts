@@ -11,6 +11,7 @@ import "./pages/post-builder";
 const router = new Router(document.getElementById("pizza-from-scratch"));
 router.setRoutes([
     { path: '/', component: 'comic-feed' },
+    { path: '/comics/', component: 'comic-feed' },
     { path: '/comics/:slug', component: 'comic-page' },
     { path: '/post-builder', component: 'post-builder' },
 ]);
