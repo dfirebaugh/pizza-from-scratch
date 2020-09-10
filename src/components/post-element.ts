@@ -4,7 +4,6 @@
  * whatever we put in the markdown file will show up here
  */
 import { LitElement, html, css, property } from "lit-element";
-import "@vanillawc/wc-markdown";
 
 class PostElement extends LitElement {
     @property({ attribute: "slug" })
@@ -23,6 +22,15 @@ class PostElement extends LitElement {
             display: flex; // adding flex to remove whitespace after images
         }
         `;
+    }
+
+    firstUpdated() {
+        this.shadowRoot?.querySelectorAll("img")?.forEach(img => {
+            img.addEventListener("mouseenter", function (event) {
+            console.log(img.getAttribute('alt'))
+            //TODO: add an overlay element
+        })
+        });
     }
 
     render() {
