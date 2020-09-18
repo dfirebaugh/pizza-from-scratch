@@ -1,7 +1,7 @@
 ---
 title: Pizza from Scratch, More About Robo-Chickens
 description: What are millions of robo-chickens going to do, once they've sold their meat-bag bodies to the food industry?
-date: Sun Sep 06 2009 20:00:00 GMT-0400 (Eastern Daylight Time)
+date: 1252281600000
 slug: Pizza_from_Scratch,_More_About_Robo-Chickens
 ---
 

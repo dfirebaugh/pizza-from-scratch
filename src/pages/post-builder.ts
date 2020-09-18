@@ -179,7 +179,7 @@ ${this.imagesToMarkDown(true).join("")}
         this.markdownHeader = `---
 title: ${this.title}
 description: ${this.description}
-date: ${this.publishDate}
+date: ${this.publishDate ? this.publishDate.getTime() / 1000 : null}
 slug: ${this.title.split(" ").join("_")}
 ---\n\n`;
         

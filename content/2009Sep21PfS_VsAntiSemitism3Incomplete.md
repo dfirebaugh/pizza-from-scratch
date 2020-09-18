@@ -1,7 +1,7 @@
 ---
 title: Pizza from Scratch, Vs. Anti-Semitism, part 4
 description: The cats, the Hicks family, and Bubba are visiting the Virginia Holocaust Museum. Politically incorrect discussion happens.
-date: Sun Sep 20 2009 20:00:00 GMT-0400 (Eastern Daylight Time)
+date: 1253491200000
 slug: Pizza_from_Scratch,_Vs._Anti-Semitism,_part_4
 ---
 

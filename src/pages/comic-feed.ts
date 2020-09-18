@@ -11,6 +11,7 @@ class ComicFeed extends LitElement {
         container {
             display: grid;
             justify-content: center;
+            width: 52vw;
         }
         `;
     }
@@ -18,13 +19,13 @@ class ComicFeed extends LitElement {
     render() {
         return html`
         <container>
-            ${Object.values(ContentService).map(post => {
+            ${Object.values(ContentService).sort((a: any, b: any) => b.date - a.date).map(post => {
             return html`
                 <post-summary 
                     slug=${post.slug}
                     title=${post.title}
                     description=${post.description}
-                    date=${post.date}
+                    date=${new Date(Number(post.date)).toDateString()}
                     >
                 </post-summary>`
         })}

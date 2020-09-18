@@ -1,7 +1,7 @@
 ---
 title: CountVitoIntro3Cecilia
 description: Count and Countess Vito go to their day job, at Rabi Hicks' kosher butcher shop.
-date: Sun Aug 30 2009 20:00:00 GMT-0400 (Eastern Daylight Time)
+date: 1251676800000
 slug: CountVitoIntro3Cecilia
 ---
 

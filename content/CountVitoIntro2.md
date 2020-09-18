@@ -1,7 +1,7 @@
 ---
 title: CountVitoIntro2
 description: Count Vito, the cat vampire isn't hurt by garlic, instead, it restricts his powers of suggestion ... which were embarrassingly hard to avoid, a moment ago.
-date: Wed Aug 26 2009 20:00:00 GMT-0400 (Eastern Daylight Time)
+date: 1251331200000
 slug: CountVitoIntro2
 ---
 

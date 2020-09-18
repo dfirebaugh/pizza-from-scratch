@@ -2,7 +2,7 @@
 title: Pizza from Scratch, Antisemitism 1
 description: Introducing kosher rabbi Joseph Hicks, employer of Count Vito and Contessa Cecilia, and neighborhood teenager, 'Bubba' Matsumoto
 The shop where cat vampire Count Vito wokrs, dividing chickens, goats, and cows into cyborgs, meat, and blood (that last only for Count Vito and any other hungry vampires; Jews don't mess with blood.) ... But who ever heard of a kosher rabbi named Joe Hicks?
-date: Wed Sep 09 2009 20:00:00 GMT-0400 (Eastern Daylight Time)
+date: 1252540800000
 slug: Pizza_from_Scratch,_Antisemitism_1
 ---
 

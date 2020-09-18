@@ -1,7 +1,7 @@
 ---
 title: CountVitoIntro4OnTheJob
 description: Count Vito and Countess Cecilia on the job, sending off another chicken 'bot
-date: Wed Sep 02 2009 20:00:00 GMT-0400 (Eastern Daylight Time)
+date: 1251936000000
 slug: CountVitoIntro4OnTheJob
 ---
 

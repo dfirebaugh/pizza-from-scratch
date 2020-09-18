@@ -1,7 +1,7 @@
 ---
 title: Vs Antisemitism, part 2
 description: Rabbi Hicks talks with Bubba Matsumoto: the continued opening of an American mind.
-date: Sun Sep 13 2009 20:00:00 GMT-0400 (Eastern Daylight Time)
+date: 1252886400000
 slug: Vs_Antisemitism,_part_2
 ---
 
