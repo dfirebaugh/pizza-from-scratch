@@ -95,6 +95,7 @@ body {
 
 #content p {
     display: flex;
+    justify-content: center;
 }
 
 footer {
