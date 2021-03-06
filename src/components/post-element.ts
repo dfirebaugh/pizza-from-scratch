@@ -35,7 +35,7 @@ class PostElement extends LitElement {
 
       #image-overlay {
         margin: 0;
-        max-width: 50vw;
+        max-width: 40vw;
         display: inherit !important;
       }
     `;
