@@ -10,6 +10,9 @@ slug: Pizza_from_Scratch,_Vs._Anti-Semitism,_part_4
 
 Sun Sep 20 2009
 
+> The cats, the Hicks family, and Bubba are visiting the Virginia Holocaust Museum. Politically incorrect discussion happens.
+        
+
 ![Bubba to Rabbi Hicks: "Um, Rabbi Hicks, something's been bothering me."
 Hicks to Bubba: "What is it, Bubba?"](2009_09_21_r1p1_PfS-AntiS4_1_.png)
 ![Bubba to Hicks: "Um, no offense meant, but ... well ... movies, TV, museums - if I don't see Jews all through the media, all my skinhead militia friends tell me, endlessly, that Jews are everywhere."](2009_09_21_r1p2_PfS-AntiS4_2_.png)
@@ -33,5 +36,3 @@ Cecilia to Vito: "- Which means it's the best diet food ever!"](2009_09_21_r2p4_
 ![Bubba to Rabbi Hicks: "Okay, but I have to listen to cranks plotting another 'final solution.'"
 Dr. Lux Luther (Peter the kitten's hairless cat uncle) overhears, and says " I know what you can tell 'em."](2009_09_21_r3p1_PfS-AntiS4_9_.png)
 
-> The cats, the Hicks family, and Bubba are visiting the Virginia Holocaust Museum. Politically incorrect discussion happens.
-        

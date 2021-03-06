@@ -103,8 +103,9 @@ slug: ${this.title.replace(" ", "_")}
 
 ${this.publishDate?.toDateString()}
 
-${this.imagesToMarkDown(true).join("")}
 > ${this.description}
+
+${this.imagesToMarkDown(true).join("")}
         `;
 
         this.markdown = this.markdownHeader + this.markdownBody;
@@ -182,14 +183,15 @@ description: ${this.description}
 date: ${this.publishDate ? this.publishDate.getTime() / 1000 : null}
 slug: ${this.title.split(" ").join("_")}
 ---\n\n`;
-        
-                this.markdownBody = `
+
+this.markdownBody = `
 # ${this.title}
+
+> ${this.description}
 
 ${this.publishDate?.toDateString()}
 
 ${this.imagesToMarkDown().join("")}
-> ${this.description}
         `;
     
         console.log(this.markdownHeader + this.markdownBody);

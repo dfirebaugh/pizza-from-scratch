@@ -19,7 +19,7 @@ class ComicFeed extends LitElement {
     render() {
         return html`
         <container>
-            ${Object.values(ContentService).sort((a: any, b: any) => b.date - a.date).map(post => {
+            ${Object.values(ContentService).sort((a: any, b: any) => a.date - b.date).map(post => {
             return html`
                 <post-summary 
                     slug=${post.slug}

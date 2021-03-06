@@ -29,6 +29,7 @@
     "@material/mwc-textarea": "^0.18.0",
     "@material/mwc-textfield": "^0.18.0",
     "@material/mwc-top-app-bar": "^0.18.0",
+    "@polymer/paper-dialog": "^3.0.1",
     "@vaadin/router": "^1.7.2",
     "@vanillawc/wc-markdown": "^1.6.3",
     "lit-element": "^2.3.1"
