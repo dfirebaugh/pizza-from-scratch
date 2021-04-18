@@ -12,7 +12,7 @@ Wed Sep 02 2009
 
 > Count Vito and Countess Cecilia on the job, sending off another chicken 'bot
         
-![undefined](2009_09_03_r1p1_PfS-Vito4_1_.png)
-![undefined](2009_09_03_r1p2_PfS-Vito4_2_.png)
-![undefined](2009_09_03_r1p3_PfS-Vito4_3_.png)
+![undefined](/images/2009_09_03_r1p1_PfS-Vito4_1_.png)
+![undefined](/images/2009_09_03_r1p2_PfS-Vito4_2_.png)
+![undefined](/images/2009_09_03_r1p3_PfS-Vito4_3_.png)
 

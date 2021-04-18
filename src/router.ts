@@ -7,10 +7,11 @@ import { Router } from '@vaadin/router';
 import "./pages/comic-feed";
 import "./pages/comic-page";
 import "./pages/post-builder";
+import "./pages/landing-page";
 
 const router = new Router(document.getElementById("pizza-from-scratch"));
 router.setRoutes([
-    { path: '/', component: 'comic-feed' },
+    { path: '/', component: 'landing-page' },
     { path: '/comics/', component: 'comic-feed' },
     { path: '/comics/:slug', component: 'comic-page' },
     { path: '/post-builder', component: 'post-builder' },

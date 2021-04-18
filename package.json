@@ -12,6 +12,7 @@
   "license": "MIT",
   "scripts": {
     "build": "node build-scripts/buildContentMap.js",
+    "predev": "mkdir -p dist/images/ && cp -r images dist/",
     "dev": "webpack --config webpack.config.cjs --watch & npm run build && cd dist && es-dev-server --app-index index.html --node-resolve --watch --open",
     "webpack": "webpack --config webpack.config.cjs",
     "start": "npm run dev",
