@@ -5,7 +5,13 @@
  *
  * Load our lit elements and other ESmodules
  */
-import { LitElement, html, css, customElement } from "lit-element";
+import {
+  LitElement,
+  html,
+  css,
+  customElement,
+  TemplateResult,
+} from "lit-element";
 import router from "./router";
 import linkStyle from "./theme/links";
 import "./components/post-element";
@@ -29,7 +35,7 @@ export class ComicApp extends LitElement {
     router.ready;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
       <mwc-top-app-bar>
         <page-title slot="title">

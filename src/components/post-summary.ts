@@ -4,7 +4,7 @@
  * and perhaps a brief summary
  *
  * this information should come from the metadata
- * in theh markdown files
+ * in the markdown files
  */
 import {
   LitElement,

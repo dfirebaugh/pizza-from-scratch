@@ -85,7 +85,7 @@ export class PostBuilder extends LitElement {
     `;
   }
 
-  imagesToMarkDown(preview?: boolean) {
+  imagesToMarkDown(preview?: boolean): string[] {
     return this.images.map((image) => {
       if (image.name == LINE_BREAK) {
         return `\n
@@ -100,7 +100,7 @@ export class PostBuilder extends LitElement {
     });
   }
 
-  updateMarkdown() {
+  updateMarkdown(): void {
     this.markdownHeader = `---
 title: ${this.title}
 description: ${this.description}
@@ -133,7 +133,7 @@ ${this.imagesToMarkDown(true).join("")}
     pageContainer.appendChild(newPostElement);
   }
 
-  handleInput(event: Event, inputType: InputType, imageIndex?: number) {
+  handleInput(event: Event, inputType: InputType, imageIndex?: number): void {
     switch (inputType) {
       case InputType.TITLE:
         this.title = (<HTMLInputElement>event.target).value;
@@ -175,15 +175,14 @@ ${this.imagesToMarkDown(true).join("")}
     this.updateMarkdown();
   }
 
-  handleDeleteImage(ImgIndex: number) {
+  handleDeleteImage(ImgIndex: number): void {
     delete this.images[ImgIndex];
     this.updateMarkdown();
   }
 
-  handleImageUpload(e: HTMLInputEvent) {
+  handleImageUpload(e: HTMLInputEvent): void {
     if (!e || !e.target || !e.target.files) {
       throw Error("image change target is null");
-      return null;
     }
 
     this.images.push(<ImageObj>{
@@ -234,7 +233,7 @@ ${this.imagesToMarkDown().join("")}
   }
 
   renderImageInfo(): TemplateResult[] {
-    return this.images.map((image, index) => {
+    return this.images.map((image: ImageObj, index: number) => {
       if (image.name == LINE_BREAK) {
         return html` <mwc-formfield label="LINE_BREAK">
           <mwc-fab

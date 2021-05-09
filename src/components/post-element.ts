@@ -50,34 +50,37 @@ export class PostElement extends LitElement {
   }
 
   firstUpdated(): void {
-    this.shadowRoot?.querySelectorAll("img")?.forEach((img) => {
-      const alignedDialog: any = this.shadowRoot?.querySelectorAll(
-        "paper-dialog"
-      );
-      if (!alignedDialog) return;
+    this.shadowRoot
+      ?.querySelectorAll("img")
+      ?.forEach((img: HTMLImageElement) => {
+        const alignedDialog: any = this.shadowRoot?.querySelectorAll(
+          "paper-dialog"
+        );
+        if (!alignedDialog) return;
 
-      img.addEventListener("mouseenter", (event) => {
-        //TODO: add an overlay element
-        this.currentAltText = getImgAlt(img);
+        img.addEventListener("mouseenter", (event) => {
+          //TODO: add an overlay element
+          this.currentAltText = this.getImgAlt(img);
 
-        alignedDialog.positionTarget = img;
-        // alignedDialog.style.display = "inherit !important"
-        this.requestUpdate();
+          alignedDialog.positionTarget = img;
+          // alignedDialog.style.display = "inherit !important"
+          this.requestUpdate();
+        });
+        img.addEventListener("mouseexit", (event) => {
+          // alignedDialog.style.display = "none"
+          this.requestUpdate();
+        });
       });
-      img.addEventListener("mouseexit", (event) => {
-        // alignedDialog.style.display = "none"
-        this.requestUpdate();
-      });
-    });
-    function getImgAlt(img: HTMLImageElement) {
-      const alt: string = img.getAttribute("alt") || "";
+  }
 
-      if (alt == "undefined") {
-        return "";
-      }
+  getImgAlt(img: HTMLImageElement): string {
+    const alt: string = img.getAttribute("alt") || "";
 
-      return alt;
+    if (alt == "undefined") {
+      return "";
     }
+
+    return alt;
   }
 
   render(): TemplateResult {
