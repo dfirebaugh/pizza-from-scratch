@@ -3,10 +3,19 @@
  * This is where we display the comic and information about it
  * whatever we put in the markdown file will show up here
  */
-import { LitElement, html, css, property } from "lit-element";
+import {
+  LitElement,
+  html,
+  css,
+  property,
+  customElement,
+  TemplateResult,
+  CSSResult,
+} from "lit-element";
 import "@polymer/paper-dialog/paper-dialog.js";
 
-class PostElement extends LitElement {
+@customElement("post-element")
+export class PostElement extends LitElement {
   @property({ attribute: "slug" })
   slug: string = "";
   @property({ attribute: "markdown" })
@@ -14,7 +23,7 @@ class PostElement extends LitElement {
 
   currentAltText: string = "";
 
-  static get styles() {
+  static get styles(): CSSResult {
     return css`
       container {
         display: grid;
@@ -40,7 +49,7 @@ class PostElement extends LitElement {
     `;
   }
 
-  firstUpdated() {
+  firstUpdated(): void {
     this.shadowRoot?.querySelectorAll("img")?.forEach((img) => {
       const alignedDialog: any = this.shadowRoot?.querySelectorAll(
         "paper-dialog"
@@ -71,7 +80,7 @@ class PostElement extends LitElement {
     }
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
       <container>
         <wc-markdown>
@@ -88,5 +97,3 @@ class PostElement extends LitElement {
     `;
   }
 }
-
-customElements.define("post-element", PostElement);
